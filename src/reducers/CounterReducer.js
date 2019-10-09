@@ -1,17 +1,25 @@
-import {ADD_COUNTER} from '../../actions/Types'
+import {COUNTER_INCREASE} from '../../actions/Types';
+import {COUNTER_DECREASE} from '../../actions/Types';
+import {FETCH_DATA} from '../../actions/Types';
+import {LOADER_LOADING} from '../../actions/Types'
 const INITIAL_STATE={
-        count:0
+        count:0,
 }
 export const reducer=(state=INITIAL_STATE,action)=>{
+    console.log("reducer state value is",state)
+    console.log("My Action is",action)
     switch(action.type){
-        case ADD_COUNTER:{
+        case COUNTER_INCREASE:{
             return{
-                ...state, count:action.payload
+                ...state, count:state.count+1
             }
         }
-
-        default:
+        case COUNTER_DECREASE:{
+            return{
+                ...state, count:state.count-1
+            }
+        }
+      default:
             return state
     }
-
 }

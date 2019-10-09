@@ -1,0 +1,48 @@
+import React from 'react';
+import { View,Image,StyleSheet,Text } from 'react-native';
+import ImageData from '../ImagesDada'
+const ImageSelect= (props) => {
+    console.log("Image select props are:",props)
+    console.log("test",props.img)
+    const {imgStyle}=Container
+    //  const{imgD}=this.props.img
+    //  console.log("imdD is",imgD)
+    switch(props.img){
+        case 'partly-cloudy-day':
+            return(
+                    <Image style={imgStyle} source={ImageData.partialy_cloud}/>
+            );
+        case 'clear-day':
+            return(
+            <Image style={imgStyle} source={ImageData.clearDay}/>
+            )
+
+        case "clear-night":
+                return(
+                    <Image style={imgStyle} source={ImageData.hail}/>
+                )
+        case "partly-cloudy-night":
+            return(
+                <Image style={imgStyle} source={ImageData.partialy_cloud}/>
+            )
+       
+        default:
+         return(
+                    <View>
+                         <Text>Null</Text>
+                     </View>
+
+                )
+         }
+}
+export default ImageSelect;
+
+
+const Container = StyleSheet.create({
+        imgStyle:{
+            marginTop:5,
+            height:30,
+            width:30,
+            alignSelf:'center'
+        }
+})

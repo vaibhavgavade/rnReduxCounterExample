@@ -1,46 +1,81 @@
 import React,{Component} from 'react';
-import { Text, View,StyleSheet } from 'react-native';
-import {Button} from '../component/Button';
+import { Text, View,StyleSheet} from 'react-native';
+import {Button} from '../component/Button'
 import {connect} from 'react-redux';
-import {CounterAction} from '../actions/MyAction';
+import {CounterActionInc} from '../actions/MyAction';
+import {CounterActionDec} from '../actions/MyAction';
 
 class MyFile extends Component{
-
-    renderReucer=()=>{
-                this.props.CounterAction(count)
-            }
-
-render(){
-        const{Container}=Styles
-        
-        return(
-         <View style={Container}>
-             <Button onPress={this.renderReucer}>
-                 login
+        IncreaseButton=()=>{
+            const {count}=this.props.count
+            console.log("counter inrement button clicked")
+                 this.props.CounterActionInc(count)
+                // this.props.dispatch({type:COUNTER_INCREASE})
+                    }
+        DecreaseButton=()=>{
+                const {count}=this.props.count
+            console.log("Counter decrement button clicked")
+            this.props.CounterActionDec(count)
+            // this.props.dispatch({type:COUNTER_DECREASE})
+        }
+        wetherBtn=()=>{
+             return(
+                <Button onPress={()=>this.props.navigation.navigate('two')}>
+                Wether
              </Button>
-         <Text>{this.props}</Text>
-         <Text>Descrement</Text>
+                )
+            }
+    
+       render(){
+          
+        const{Container,textStyles,wetherbtnStyles}=Styles
+        const {count}=this.props
+        console.log("render props value is",count)
+     return(
+         <View style={{flex:1}}>
+     <View style={Container}>
+             <Button onPress={this.IncreaseButton} >
+                 Increment
+             </Button>
+             <Text style={textStyles}>{count}</Text>
+        <Button onPress={this.DecreaseButton}>
+            Decrement
+        </Button>
+    </View>
+  
+     <View style={wetherbtnStyles}>
+         
+            {this.wetherBtn()}
      </View>
-  )
+   
+      </View>
+            
+   )}
 }
 
+const mapStateToProps=({data})=>{
+    console.log("state value is",data)
+
+    const {count} = data;
+    return {count} 
+   
 }
-
-
-const mapToStateProps=({data})=>{
-    const{count}=data
-       
-}
-
-export  default connect (mapToStateProps,{CounterAction})(MyFile);
-
-
+    
+export  default connect (mapStateToProps,{CounterActionInc,CounterActionDec})(MyFile);
 const Styles=StyleSheet.create({
   Container:{
-  flex: 1,
-  justifyContent: 'space-around',
-  alignItems: 'center',
-  flexDirection: 'row',
+  marginTop:100,
+  justifyContent:'space-evenly',
+    alignItems: 'center',
+    flexDirection: 'row',
+  },
+  textStyles:{
+      color:'#ff1493'
+  },
+  wetherbtnStyles:{
+    marginTop:100,
+    height:30,
+    width:100,alignSelf:'center'
   }
 })
 
