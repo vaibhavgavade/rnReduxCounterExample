@@ -2,17 +2,17 @@ import React from 'react';
 import { Text, View,StyleSheet,ScrollView,Image } from 'react-native';
 import ImageSelect from './ImageSelect'
 
-const Card = (props) => {
-    console.log( "card props are",props)
+const Card = ({header,value,images}) => {
+    // console.log( "card props are",props)
 
     const{viewStyle,textStyle,imageStyle}=container
     return(
         <View style={viewStyle}>
-            <Text style={textStyle}>{props.header}</Text>
-            <Text style={textStyle}>{props.value}</Text>
+            <Text style={textStyle}>{header}</Text>
+            <Text style={textStyle}>{value}</Text>
             {/* <Image style={imageStyle} source={props.img}/> */}
             
-              <ImageSelect img={props.images}/>
+              <ImageSelect img={images}/>
                
         </View>
       );

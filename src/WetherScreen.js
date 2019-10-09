@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { View, Text,StyleSheet,FlatList,Image,ScrollView} from 'react-native';
-import {Button} from '../component/Button';
+import { View, Text,StyleSheet,FlatList,ScrollView} from 'react-native';
+import  {WetherUpperButtons} from '../component/WetherUpperButtons'
 import {connect} from 'react-redux';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {fetchData} from '../actions/MyAction';
@@ -16,8 +16,10 @@ class WetherScreen extends Component {
          }
 
 render() {
- const {viewContainer,textStyle,textViewStyle,careSctionStyle,iconStyle,imgStyle}=Container
+ const {viewContainer,textStyle,imgStyle,iconStyles,titleStyles}=Container
     const {dataSource}=this.props;
+    const {navigate}=this.props.navigation
+
     console.log("djfkdj",dataSource)
     if(this.props.isLoading){   
        return <Spinner size="large"/>
@@ -26,40 +28,38 @@ render() {
     return (
           
         <View style={viewContainer}>
+          <WetherUpperButtons onpress={()=>navigate('search')}/>
+        
        
-          <Icon name="md-rainy" size={150} color="#000000"/>
-          <Text>rnWether</Text>
+    
+          <Icon style={iconStyles} name="md-rainy" size={150} color="#87cefa"/>
+          <Text style={titleStyles}>rnWether</Text>
           {/* <Image source={ImageData.snowCloudy}/> */}
           <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
             <Card
               header="Humidity"
               value={dataSource.currently.humidity}
-              img={ImageData.flood}
               images={dataSource.currently.icon}
             />
             <Card
               header="Pressure"
               value={dataSource.currently.pressure}
-              img={ImageData.lightning}
               images={dataSource.currently.icon}
             />
              <Card
               header="windSpeed"
               value={dataSource.currently.windSpeed}
-              img={ImageData.breeze}
-              images={dataSource.currently.icon}
+               images={dataSource.currently.icon}
             />
              <Card
               header="Temperature"
               value={dataSource.currently.temperature}
-              img={ImageData.lightning}
               images={dataSource.currently.icon}
             />
             
              <Card
               header="Ozone"
               value={dataSource.currently.ozone}
-              img={ImageData.coldDay}
               images={dataSource.currently.icon}
               />
             
@@ -75,8 +75,6 @@ render() {
                     <Text style={textStyle}>MaxTemp:{item.apparentTemperatureMax}</Text>
                     <Text style={textStyle}>MinTemp:{item.apparentTemperatureMin}</Text>
                     <ImageSelect img={item.icon}/> 
-                   
-
                   </CardSection>
                   )}
           />
@@ -100,9 +98,7 @@ export default connect(mapStateToProps,{fetchData})(WetherScreen)
 
 const Container=StyleSheet.create({
   viewContainer:{
-    justifyContent:'center',
-    alignItems:'center',
-    marginTop:100
+    marginTop:10
   },
     textStyle:{
        fontSize:15,
@@ -110,10 +106,7 @@ const Container=StyleSheet.create({
        paddingLeft:10,
        alignSelf:'center'
     },
-    iconStyle:{
-      flexDirection:'column',
-      marginLeft:100
-},
+
 textViewStyle:{
   flexDirection:'column'
 },
@@ -126,7 +119,16 @@ careSctionStyle:{
 imgStyle:{
   height:50,
   width:50
+},
+iconStyles:{
+alignSelf:'center'
+  
+},
+titleStyles:{
+  fontSize:25,
+  alignSelf:'center'
 }
+
 
 })
 

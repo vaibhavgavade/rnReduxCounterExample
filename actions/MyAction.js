@@ -2,10 +2,12 @@ import {COUNTER_INCREASE} from './Types';
 import {COUNTER_DECREASE} from './Types';
 import {FETCH_STARTED} from './Types';
 import {FETCHING_SUCCESS} from './Types';
-import {FETCHING_FAIL} from './Types'
+import {FETCHING_FAIL} from './Types';
+import {SEARCH_START} from './Types';
+import {SEARCH_SUCCESS} from './Types';
+import {SEARCH_FAIL} from './Types'
+import axios from 'axios';
 
-import {LOADER_LOADING} from './Types'
-import axios from 'axios'
 export const CounterActionInc=(count)=>({
     type:COUNTER_INCREASE,
     payload:count 
@@ -28,8 +30,7 @@ export const fetchData=()=>dispatch=>{
                 type:FETCHING_SUCCESS,
                 payload:resdata.data
           })
-          
-      })
+          })
       .catch((err)=>{
             dispatch({
                 type:FETCHING_FAIL, 
@@ -38,6 +39,29 @@ export const fetchData=()=>dispatch=>{
             })
       })
     
+}
+
+export const searchResult=()=>dispatch=>{
+    const searchApi='https://api.locationiq.com/v1/autocomplete.php?key=YOUR_PRIVATE_TOKEN&q=Empire'
+    const requestApi=axios.get(searchApi)
+    dispatch({
+        type:SEARCH_START
+    })
+    requestApi.then((resData)=>{
+        dispatch({
+            type:SEARCH_SUCCESS,
+            payload:resData
+        })
+    })
+    .catch((err)=>{
+        dispatch({
+            type:SEARCH_FAIL,
+            payload:err
+        })
+    })
+
+    type:SEARCH_RESULT
+    payload:search
 }
 
   

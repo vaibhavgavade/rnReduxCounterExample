@@ -5,3 +5,6 @@ export const LOADER_LOADING="Loader_loading";
 export const FETCH_STARTED="Fetch_started";
 export const FETCHING_SUCCESS="Fetching_sucess";
 export const FETCHING_FAIL="Fetching false";
+export const SEARCH_START="Searching start";
+export const SEARCH_SUCCESS="Searching success";
+export const SEARCH_FAIL="Searching fail"
