@@ -7,4 +7,5 @@ export const FETCHING_SUCCESS="Fetching_sucess";
 export const FETCHING_FAIL="Fetching false";
 export const SEARCH_START="Searching start";
 export const SEARCH_SUCCESS="Searching success";
-export const SEARCH_FAIL="Searching fail"
+export const SEARCH_FAIL="Searching fail";
+export const UPDATE_INFO="Updating info";

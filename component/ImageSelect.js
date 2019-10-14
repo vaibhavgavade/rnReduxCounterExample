@@ -25,6 +25,18 @@ const ImageSelect= (props) => {
             return(
                 <Image style={imgStyle} source={ImageData.partialy_cloud}/>
             )
+        case "rain":
+            return(
+                <Image  style={imgStyle} source={ImageData.rainbow}/>
+            )
+        case "cloudy":
+            return(
+                <Image style={imgStyle} source={ImageData.snowCloudy}/>
+            )
+        case "fog":
+            return(
+                <Image style={imgStyle} source={ImageData.foggy}/>
+            )
        
         default:
          return(
