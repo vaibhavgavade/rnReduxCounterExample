@@ -1,21 +1,15 @@
 import React from 'react'
 import {createAppContainer} from 'react-navigation';
 import {createStackNavigator} from 'react-navigation-stack'
-import MyFile from './src/myFile';
 import WetherScreen from './src/WetherScreen' ;
 import SearchScreen from './src/SeacrhBarScreeen'
 import StartingScreen from './src/StartingScreen'
-
+import AllFeatures from './src/AllFeatures';
+import Language from './src/Language';
+import RandomDate from './src/RandomDate';
+import TimeMatchine from './src/TimeMatchine';
 const AppStack= createStackNavigator({
-    // one:{
-    //     screen:MyFile,
-    //     navigationOptions:{
-    //             title:'Counter App',
-    //             headerBackTitle:null,
-    //         }
-    // },
-
-    start:{
+   start:{
         screen:StartingScreen,
        navigationOptions:{
             header:null,
@@ -31,16 +25,39 @@ const AppStack= createStackNavigator({
                 fontSize:25,
                 color:'#000000'
             }
-     },
+        },
     },
-
     search:{
         screen:SearchScreen,
         navigationOptions:{
             title:"Search Location"
         }
+    },
+    Alldata:{
+        screen:Language,
+        navigationOptions:{
+            title:"Language"
+        }
+    },
+    feature:{
+        screen:AllFeatures,
+        navigationOptions:{
+            headerBackTitle:null,
+            title:"Settings"
+        }
+    },
+    random:{
+        screen:RandomDate,
+        navigationOptions:{
+            title:"Calendar",
+            headerBackTitle:null
+        }
+    },
+    time:{
+        screen:TimeMatchine,
+        navigationOptions:{
+            title:"Time Mathine"
+        }
     }
-
 })
-
 export default createAppContainer(AppStack);

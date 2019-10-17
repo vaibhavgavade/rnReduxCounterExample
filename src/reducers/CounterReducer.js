@@ -6,8 +6,7 @@ const INITIAL_STATE={
         count:0,
 }
 export const reducer=(state=INITIAL_STATE,action)=>{
-    console.log("reducer state value is",state)
-    console.log("My Action is",action)
+
     switch(action.type){
         case COUNTER_INCREASE:{
             return{

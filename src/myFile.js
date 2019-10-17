@@ -54,12 +54,9 @@ class MyFile extends Component{
 }
 
 const mapStateToProps=({data})=>{
-    console.log("state value is",data)
-
-    const {count} = data;
+   const {count} = data;
     return {count} 
-   
-}
+   }
     
 export  default connect (mapStateToProps,{CounterActionInc,CounterActionDec})(MyFile);
 const Styles=StyleSheet.create({

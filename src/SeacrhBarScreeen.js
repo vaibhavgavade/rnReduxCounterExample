@@ -85,9 +85,7 @@ render(){
     );}
 }
 const mapStateToProps=({search})=>{
-   
-    console.log("Test",search)
-    const{data,loaderLoading}=search
+   const{data,loaderLoading}=search
     return { data,loaderLoading}
 }
 export default connect(mapStateToProps,{searchResult,changeLoc})(SearchBarScreen)

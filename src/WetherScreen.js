@@ -8,15 +8,16 @@ import Card from '../component/Card';
 import {CardSection} from '../component/CardSection';
 import ImageSelect from '../component/ImageSelect';
 import {Spinner} from '../component/Spinner';
-import {withNavigation} from 'react-navigation'
 import TimeConversion from '../component/TimeConverison';
 class WetherScreen extends Component {
     componentDidMount(){
+    
         this.focusListener=this.props.navigation.addListener("willFocus",()=>{
           this.fetchcalled()
-        })
+          console.log("gggggg")
+          })
 }
-  componentWillUnmount(){
+componentWillUnmount(){
         this.focusListener.remove();
       }
 fetchcalled(){
@@ -24,12 +25,15 @@ fetchcalled(){
     this.props.lat,
     this.props.long
   )
-}          
+}     
+
+    
 
 render() {
- const {viewContainer,textStyle,imgStyle,iconStyles,titleStyles}=Container
+  const {viewContainer,textStyle,imgStyle,iconStyles,titleStyles}=Container
     const {dataSource}=this.props;
-    
+    const {theme}=this.props
+    console.log("hhhhhhhh",theme)
     console.log("lat is iiiiiiiiiiiiiiiiiiiiii",this.props.dataSource.latitude)
     const {navigate}=this.props.navigation
     console.log("djfkdj",dataSource)
@@ -38,10 +42,16 @@ render() {
       }
       else{
     return (
-          <View style={viewContainer}>
-          <WetherUpperButtons onpress={()=>navigate('search')}/>
-        <Icon style={iconStyles} name="md-rainy" size={150} color="#87cefa"/>
+          <View style={{backgroundColor:this.props.theme,flex:1}}>
+           
+          <WetherUpperButtons 
+          searchPress={()=>navigate('search')}
+          settingPress={()=>navigate('feature')
+          
+          }/>
+        <Icon style={iconStyles} name="md-rainy" size={150} color="#000000"/>
           <Text style={titleStyles}>{this.props.loc}</Text>
+          <Text style={titleStyles}>{this.props.date}</Text>
           {/* <Image source={ImageData.snowCloudy}/> */}
           <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
             <Card
@@ -73,38 +83,38 @@ render() {
          <FlatList horizontal={true} showsHorizontalScrollIndicator={false}
               data={dataSource.daily.data}
               keyExtractor ={(kyes)=>kyes.dewPoint}
-              renderItem={({item})=>(
-              <CardSection>
-                     <TimeConversion allDateTime={item.time}/>
+              renderItem={({item,index})=>{
+              return<CardSection>
+                  <TimeConversion allDateTime={item.time}/>
                     <Text style={textStyle}>MaxTemp:{item.apparentTemperatureMax}</Text>
                     <Text style={textStyle}>MinTemp:{item.apparentTemperatureMin}</Text>
                     <ImageSelect img={item.icon}/> 
                   </CardSection>
-                  )}
-          />
+                }}
+                />
+              
         </View>
         );  
         }
   }
 }
- const mapStateToProps=({loaderRe,update})=> {
-   console.log("update reducer",update)
-  console.log("Wether App state is",loaderRe)
+ const mapStateToProps=({loaderRe,update,myTheme})=> {
+  const {theme}=myTheme
   const {dataSource,isLoading}=loaderRe;
   const {lat,long,loc}=update
-  return{dataSource,isLoading,lat,long,loc}
+  return{dataSource,isLoading,lat,long,loc,theme,}
   }
 export default connect(mapStateToProps,{fetchData})(WetherScreen)
-const Container=StyleSheet.create({
-  viewContainer:{
-    marginTop:10
-  },
-    textStyle:{
+export const Container=StyleSheet.create({
+  // viewContainer:{
+  //   marginTop:10,
+  // //  backgroundColor:props.theme
+textStyle:{
        fontSize:15,
        paddingTop:10,
        paddingLeft:10,
        alignSelf:'center'
-    },
+  },
 textViewStyle:{
   flexDirection:'column'
 },
@@ -119,7 +129,7 @@ imgStyle:{
 },
 iconStyles:{
 alignSelf:'center'
-  },
+},
 titleStyles:{
   fontSize:25,
   alignSelf:'center'

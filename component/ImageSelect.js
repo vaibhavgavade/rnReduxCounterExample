@@ -5,8 +5,6 @@ const ImageSelect= (props) => {
     console.log("Image select props are:",props)
     console.log("test",props.img)
     const {imgStyle}=Container
-    //  const{imgD}=this.props.img
-    //  console.log("imdD is",imgD)
     switch(props.img){
         case 'partly-cloudy-day':
             return(
@@ -37,19 +35,15 @@ const ImageSelect= (props) => {
             return(
                 <Image style={imgStyle} source={ImageData.foggy}/>
             )
-       
-        default:
+       default:
          return(
                     <View>
                          <Text>Null</Text>
                      </View>
-
                 )
          }
 }
 export default ImageSelect;
-
-
 const Container = StyleSheet.create({
         imgStyle:{
             marginTop:5,
