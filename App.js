@@ -1,20 +1,18 @@
-import React from 'react';
-import {createStore, applyMiddleware} from 'redux';
-import AppStack from './Route';
-import thunk from 'redux-thunk';
-import {composeWithDevTools} from 'redux-devtools-extension';
-import {rootReducer} from './src/reducers/CombineReducer';
+import React, {Component} from 'react';
+import MainRoot from './component/MainRoot';
 import {Provider} from 'react-redux';
+import {PersistGate} from 'redux-persist/es/integration/react';
+import {Store, persistor} from './src/Store';
+class App extends Component {
+  render() {
+    return (
+      <Provider store={Store}>
+        <PersistGate loading={null} persistor={persistor}>
+          <MainRoot />
+        </PersistGate>
+      </Provider>
+    );
+  }
+}
 
-const App = () => {
-  const store = createStore(
-    rootReducer,
-    composeWithDevTools(applyMiddleware(thunk)),
-  );
-  return (
-    <Provider store={store}>
-      <AppStack />
-    </Provider>
-  );
-};
 export default App;

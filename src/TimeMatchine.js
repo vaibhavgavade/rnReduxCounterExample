@@ -6,6 +6,7 @@ import {Spinner} from '../component/Spinner';
 import Icon from 'react-native-vector-icons/Feather';
 import Card from '../component/Card';
 import TimeConversion from '../component/TimeConverison';
+import ImageSelect from '../component/ImageSelect';
 import {CardSection} from '../component/CardSection';
 class TimeMatchine extends Component {
   componentDidMount() {
@@ -16,7 +17,7 @@ class TimeMatchine extends Component {
     );
   }
   render() {
-    const {viewStyle} = Container;
+    const {viewStyle, titleStyles} = Container;
     const {dateData} = this.props;
     const {isLoading} = this.props;
     console.log('Test dddddddd', dateData);
@@ -25,8 +26,16 @@ class TimeMatchine extends Component {
       return <Spinner size="large" />;
     } else {
       return (
-        <View style={viewStyle}>
-          <Icon name="cloud-drizzle" size={120} color="#000000" />
+        <View
+          style={{
+            justifyContent: 'center',
+            alignItems: 'center',
+
+            backgroundColor: this.props.theme,
+            flex: 1,
+          }}>
+          <Text style={titleStyles}>Welcome to You </Text>
+          <Icon name="cloud-drizzle" size={120} color="#dc143c" />
           <TimeConversion allDateTime={dateData.currently.time} />
           <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
             <Card
@@ -57,11 +66,15 @@ class TimeMatchine extends Component {
           </ScrollView>
           <FlatList
             horizontal={true}
+            showsHorizontalScrollIndicator={false}
             data={dateData.hourly.data}
             renderItem={({item}) => {
               return (
                 <CardSection>
-                  <Text>{item.dewPoint}</Text>
+                  <TimeConversion allDateTime={item.time} />
+                  <Text style={titleStyles}>Dewpoint:{item.dewPoint}</Text>
+                  <Text style={titleStyles}>windSpeed:{item.windSpeed}</Text>
+                  <ImageSelect img={item.icon} />
                 </CardSection>
               );
             }}
@@ -71,12 +84,13 @@ class TimeMatchine extends Component {
     }
   }
 }
-const mapStateToProps = ({dateRe, testRe}) => {
+const mapStateToProps = ({dateRe, testRe, myTheme}) => {
   console.log('my date reducer is aceesed', dateRe);
   console.log('my time machhine reducer is aceesed', testRe);
+  const {theme} = myTheme;
   const {lati, longi, loca, date} = dateRe;
   const {isLoading, dateData} = testRe;
-  return {lati, longi, loca, date, isLoading, dateData};
+  return {lati, longi, loca, date, isLoading, dateData, theme};
 };
 export default connect(
   mapStateToProps,
@@ -88,5 +102,11 @@ const Container = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginTop: 40,
+  },
+  titleStyles: {
+    fontSize: 18,
+    alignSelf: 'center',
+    paddingTop: 10,
+    color: '#000000',
   },
 });
