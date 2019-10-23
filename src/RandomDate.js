@@ -19,8 +19,7 @@ class RandomDate extends Component {
   render() {
     const {viewStyle, buttonStyle, buttonTextStyle} = Container;
     const {navigate} = this.props.navigation;
-
-    return (
+return (
       <View
         style={{
           justifyContent: 'center',
@@ -30,7 +29,12 @@ class RandomDate extends Component {
         }}>
         <DatePicker
           mode="date"
-          style={{backgroundColor: '#ff69b4', width: 160, borderRadius: 5}}
+          style={{
+            backgroundColor: '#ff69b4',
+            width: 180,
+            height: 51,
+            borderRadius: 5,
+          }}
           date={this.state.date}
           onDateChange={date => {
             var myDate = Math.floor(new Date(date).valueOf() / 1000);
@@ -45,17 +49,64 @@ class RandomDate extends Component {
           }}
           placeholder="Select Date"
           confirmBtnText="Done"
-          cancelBtnText="cancel"
+          cancelBtnText="Cancel"
           customStyles={{
             dateIcon: {
               position: 'absolute',
-              left: 0,
+              left: 10,
               right: 0,
-              marginRight: 0,
+              marginRight: 10,
+              borderRadius: 5,
+              backgroundColor: '#00bfff',
             },
             dateInput: {
-              marginLeft: 0,
+              backgroundColor: '#dc143c',
+              borderColor: '#00ff00',
+              borderRadius: 5,
+              margin: 5,
             },
+            btnTextConfirm: {
+              color: '#ff00ff',
+              // backgroundColor: 'black',
+              marginTop:10,
+              height: 30,
+              width: 80,
+              textAlign: 'center',
+              borderRadius: 5,
+              fontSize:20
+            },
+            btnTextCancel: {
+              color: '#191970',
+              // backgroundColor: 'black',
+             marginTop:10,
+              height: 30,
+              width: 80,
+              textAlign: 'center',
+              borderRadius:10,
+              fontSize:20
+            },
+            datePickerCon: {
+              // backgroundColor: '#ff1493',
+              borderRadius: 5,
+              marginLeft: 10,
+              marginRight: 10,
+              marginBottom: 10,
+              height: 210,
+              
+             },
+            dateText: {
+              fontSize: 15,
+              color: '#191970',
+              paddingLeft: 20,
+            },
+            dateTouchBody: {
+              marginTop: 5,
+              marginBottom: 5,
+            },
+            datePicker:{
+              backgroundColor:'#9acd32'
+            }
+           
           }}
         />
         <TouchableOpacity

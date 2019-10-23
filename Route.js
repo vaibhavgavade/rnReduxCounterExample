@@ -39,18 +39,22 @@ const AppStack = createStackNavigator(
     search: {
       screen: SearchScreen,
       navigationOptions: {
+        headerBackTitle: null,
         title: 'Search Location',
+    
       },
     },
     Alldata: {
       screen: Language,
       navigationOptions: {
+        headerBackTitle: null,
         title: 'Language',
       },
     },
     feature: {
       screen: AllFeatures,
       navigationOptions: {
+        headerBackTitle: null,
         title: 'Settings',
       },
     },
@@ -74,15 +78,16 @@ const AppStack = createStackNavigator(
 
   {
     defaultNavigationOptions: ({screenProps}) => {
-      console.log('nnnnnnnnnnAVIGATION', screenProps.myProps);
       const theme = screenProps.myProps;
       return {
         headerStyle: {
           backgroundColor: theme,
         },
-        headerTintColor: '#6495ed',
+         headerTintColor: 'white',
+         
         headerTitleStyle: {
           fontWeight: 'bold',
+          fontSize:25,
         },
       };
     },

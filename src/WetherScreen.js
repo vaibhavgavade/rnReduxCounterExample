@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Text, StyleSheet, FlatList, ScrollView} from 'react-native';
+import {View, Text, StyleSheet, FlatList, ScrollView,StatusBar} from 'react-native';
 import {WetherUpperButtons} from '../component/WetherUpperButtons';
 import {connect} from 'react-redux';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -22,13 +22,10 @@ class WetherScreen extends Component {
   fetchcalled() {
     this.props.fetchData(this.props.lat, this.props.long);
   }
-
-  render() {
+render() {
     const {
-      viewContainer,
       textStyle,
-      imgStyle,
-      iconStyles,
+        iconStyles,
       titleStyles,
     } = Container;
     const {dataSource} = this.props;
@@ -45,6 +42,10 @@ class WetherScreen extends Component {
     } else {
       return (
         <View style={{backgroundColor: this.props.theme, flex: 1}}>
+            <StatusBar
+     backgroundColor="blue"
+     barStyle="light-content"
+      />
           <WetherUpperButtons
             searchPress={() => navigate('search')}
             settingPress={() => navigate('feature')}
@@ -116,9 +117,6 @@ export default connect(
   {fetchData},
 )(WetherScreen);
 export const Container = StyleSheet.create({
-  // viewContainer:{
-  //   marginTop:10,
-  // //  backgroundColor:props.theme
   textStyle: {
     fontSize: 15,
     paddingTop: 10,

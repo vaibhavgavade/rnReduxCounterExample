@@ -19,10 +19,7 @@ textChanging=(text)=>{
             this.setState({
                         inputText:text
                 })
-                
         }      
-        
-       
         searchBarAction=()=>{
         console.log("search bar action in called in react native")
             if(this.state.inputText.trim() === " "){
@@ -40,7 +37,6 @@ testing(){
             console.log("test",this.props.data)
             console.log("test",this.props.data[0].display_name)
             return (
-            
             <FlatList
         data={this.props.data}
         renderItem={({ item }) =>(
@@ -55,17 +51,13 @@ testing(){
             
         )}
         keyExtractor={item => item.lat}
-      />
-      
-            );
+      /> );
          }
         }
 render(){
  const {viewStyles,inputStyles,searchButton}=Container
         console.log("map to state props data updating is",this.props.data)
-
-        
-    return (
+return (
     <View>
         <View style={viewStyles}>
         <TextInput
@@ -73,9 +65,7 @@ render(){
             placeholder="Enter the search text"
             onChangeText={this.textChanging}
             multiline={true} 
-            
-        />
-       
+             />
     <TouchableOpacity style={searchButton} onPress={this.searchBarAction} >
             <Icon  name="md-search" size={30} color="#000000"/>
     </TouchableOpacity>

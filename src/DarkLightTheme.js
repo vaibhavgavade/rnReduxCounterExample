@@ -6,7 +6,7 @@ import {CheckBox} from '../component/CheckBox';
 import {CheBoxUnSelect} from '../component/cheBoxUnSelect';
 import {settingtheme} from '../actions/MyAction';
 const COLOR = '#000000';
-const COLORS = '#0000ff';
+const COLORS = '#b0c4de';
 class DarkLightTheme extends Component {
   static navigationOptions = ({navigation}) => {
     return {
@@ -15,7 +15,7 @@ class DarkLightTheme extends Component {
         <TouchableOpacity
           style={{paddingRight: 20}}
           onPress={() => navigation.navigate('two')}>
-          <Icon name="home" size={25} />
+          <Icon name="home" size={25} color="#ff1493" />
         </TouchableOpacity>
       ),
       headerTitleStyle: {

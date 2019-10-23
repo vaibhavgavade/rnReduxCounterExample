@@ -1,6 +1,5 @@
 import React from 'react';
-import {  View, Text, ActivityIndicator } from 'react-native';
-
+import {  View, ActivityIndicator } from 'react-native';
 const Spinner = ( { size })=>{
     return (
         <View style={styles.spinnerStyle}>
@@ -8,7 +7,6 @@ const Spinner = ( { size })=>{
         </View>
     )
 };
-
 const styles= {
     spinnerStyle:{
         // flex:1,
@@ -17,5 +15,4 @@ const styles= {
         marginTop:50
     }
 };
-
 export { Spinner };
