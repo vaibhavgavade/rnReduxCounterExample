@@ -1,7 +1,5 @@
 import React from 'react';
 import { Text,TouchableOpacity,StyleSheet} from 'react-native';
-
-
 const Button = ({onPress,children}) => {
     const {buttonStyle,textStyle}=Styles
     return(
@@ -10,34 +8,29 @@ const Button = ({onPress,children}) => {
                         {children}
                 </Text>
         </TouchableOpacity>
-    
 );
 }
 const Styles=StyleSheet.create({
     buttonStyle:{
-        // flex:1,
-        marginTop:5,
-        alignSelf:'center',
-        backgroundColor:'#f8f8ff',
+        marginTop:15,
+        backgroundColor:'#ff4500',
         borderColor:'#1e90ff',
         borderWidth:1,
-         marginLeft:10,
-        marginRight:10,
+        marginLeft:30,
+        marginRight:20,
         borderRadius:5,
-        height:30,
-        width:100,
-        marginEnd:150,
-     
+        height:41,
+        width:250,
+       
 
-        
 },
-        textStyle:{
-            alignSelf:'center',
-            fontSize:20,
-            color:'black',
-            fontWeight:'600',
-            color:'#4169e1'
-            // paddingTop:5,
-             }
+   textStyle:{
+        textAlign:'center',
+        fontSize:20,
+        color:'black',
+        fontWeight:'600',
+        color:'#000000',
+        paddingTop:5
+        }
 })
-export  {Button};
+export {Button};

@@ -2,11 +2,13 @@ import React, {Component} from 'react';
 import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
 import {connect} from 'react-redux';
 import Icon from 'react-native-vector-icons/Feather';
-import {CheckBox} from '../component/CheckBox';
-import {CheBoxUnSelect} from '../component/cheBoxUnSelect';
+import CheckBox from '../component/CheckBox';
+import CheBoxUnSelect from '../component/cheBoxUnSelect';
 import {settingtheme} from '../actions/MyAction';
 const COLOR = '#000000';
-const COLORS = '#b0c4de';
+const COLORS = '#fffaf0';
+const textColor="#fffaf0"
+const whiteText="#000000"
 class DarkLightTheme extends Component {
   static navigationOptions = ({navigation}) => {
     return {
@@ -18,11 +20,7 @@ class DarkLightTheme extends Component {
           <Icon name="home" size={25} color="#ff1493" />
         </TouchableOpacity>
       ),
-      headerTitleStyle: {
-        fontWeight: 'bold',
-        color: 'white',
-        fontSize: 25,
-      },
+   
       //   headerStyle: {
       //     backgroundColor: navigation.getParams('theme'),
       //   },
@@ -32,12 +30,14 @@ class DarkLightTheme extends Component {
   themeFunction() {
     console.log('theme function called');
     const color = COLOR;
-    this.props.settingtheme(color);
+    const text=textColor
+    this.props.settingtheme(color,text);
   }
   themeFunctions() {
     console.log('theme function called');
     const color = COLORS;
-    this.props.settingtheme(color);
+    const texts= whiteText
+    this.props.settingtheme(color,texts);
   }
   dataNavigate() {
     this.props.navigation.navigate('DLtheme');

@@ -12,6 +12,10 @@ import Language from './src/Language';
 import RandomDate from './src/RandomDate';
 import TimeMatchine from './src/TimeMatchine';
 import DarkLightTheme from './src/DarkLightTheme';
+import AccentDarkLight from './src/AccentDarkLight'
+import HomeScreen from './src/HomeScreen';
+
+
 
 const splashScreen = createStackNavigator({
   start: {
@@ -25,10 +29,18 @@ const splashScreen = createStackNavigator({
 
 const AppStack = createStackNavigator(
   {
+
+    Home:{
+      screen:HomeScreen,
+      navigationOptions:{
+        title:"Detect Location"
+      },
+    },
+
     two: {
       screen: WetherScreen,
       navigationOptions: {
-        title: 'Wether',
+        title: 'Weather',
         headerBackTitle: null,
         headerTitleStyle: {
           fontSize: 25,
@@ -74,18 +86,28 @@ const AppStack = createStackNavigator(
     DLtheme: {
       screen: DarkLightTheme,
     },
+    Accent:{
+      screen:AccentDarkLight,
+      navigationOptions:{
+          title:'Accent Color'
+      }
+    },
   },
 
+ 
   {
-    defaultNavigationOptions: ({screenProps}) => {
+    defaultNavigationOptions: ({screenProps,myTextC}) => {
+
       const theme = screenProps.myProps;
+      const textC=screenProps.myTextC;
+      console.log("navigtiondefault  mmm",textC)
       return {
         headerStyle: {
           backgroundColor: theme,
         },
-         headerTintColor: 'white',
+         headerTintColor: textC,
          
-        headerTitleStyle: {
+        headerTitleStyle: {          
           fontWeight: 'bold',
           fontSize:25,
         },

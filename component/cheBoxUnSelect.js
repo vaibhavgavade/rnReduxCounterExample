@@ -1,11 +1,12 @@
 import React from 'react';
 import {Text, View, TouchableOpacity, StyleSheet} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
+import {connect} from 'react-redux';
 
-const CheBoxUnSelect = ({title, onPress}) => {
+const CheBoxUnSelect = ({title, onPress, AccentC}) => {
   const {viewStyles, textStyles, iconStyle} = Container;
   return (
-    <View style={viewStyles}>
+    <View style={[viewStyles, {backgroundColor: AccentC}]}>
       <TouchableOpacity>
         <Text style={textStyles}>{title}</Text>
       </TouchableOpacity>
@@ -21,12 +22,18 @@ const CheBoxUnSelect = ({title, onPress}) => {
     </View>
   );
 };
-export {CheBoxUnSelect};
+
+const mapStateToProps = ({accent}) => {
+  console.log('accent color state ||||||||', accent);
+  const {AccentC} = accent;
+  return {AccentC};
+};
+export default connect(mapStateToProps)(CheBoxUnSelect);
 const Container = StyleSheet.create({
   viewStyles: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    backgroundColor: 'red',
+
     marginTop: 20,
     marginLeft: 10,
     marginRight: 10,

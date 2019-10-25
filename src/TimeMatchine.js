@@ -7,7 +7,7 @@ import Icon from 'react-native-vector-icons/Feather';
 import Card from '../component/Card';
 import TimeConversion from '../component/TimeConverison';
 import ImageSelect from '../component/ImageSelect';
-import {CardSection} from '../component/CardSection';
+import CardSection from '../component/CardSection';
 class TimeMatchine extends Component {
   componentDidMount() {
     this.props.dateFetchData(

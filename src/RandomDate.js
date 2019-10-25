@@ -1,5 +1,12 @@
 import React, {Component} from 'react';
-import {View, StyleSheet, TouchableOpacity, Text, Alert} from 'react-native';
+import {
+  View,
+  StyleSheet,
+  TouchableOpacity,
+  Text,
+  Alert,
+  Image,
+} from 'react-native';
 import DatePicker from 'react-native-datepicker';
 import {Button} from '../component/Button';
 import {connect} from 'react-redux';
@@ -19,7 +26,7 @@ class RandomDate extends Component {
   render() {
     const {viewStyle, buttonStyle, buttonTextStyle} = Container;
     const {navigate} = this.props.navigation;
-return (
+    return (
       <View
         style={{
           justifyContent: 'center',
@@ -27,6 +34,18 @@ return (
           flex: 1,
           backgroundColor: this.props.theme,
         }}>
+       
+        <Image
+          style={{height: 250, width: 180, borderRadius: 5,}}
+          source={require('../asset/image/TimeMatchine.jpg')}
+        />
+         <Text style={{color:'white',marginTop:20, marginLeft:10,marginRight:10,fontSize:15}}>
+          The Time Machine is a science fiction novella by H. G. Wells,
+          published in 1895 and written as a frame narrative. The work 
+          is generally credited with the popularization of the concept 
+          of time travel by using a vehicle or device to travel purposely 
+          and selectively forward or backward through time. 
+        </Text>
         <DatePicker
           mode="date"
           style={{
@@ -34,6 +53,8 @@ return (
             width: 180,
             height: 51,
             borderRadius: 5,
+            marginTop: 20,
+          
           }}
           date={this.state.date}
           onDateChange={date => {
@@ -68,22 +89,22 @@ return (
             btnTextConfirm: {
               color: '#ff00ff',
               // backgroundColor: 'black',
-              marginTop:10,
+              marginTop: 10,
               height: 30,
               width: 80,
               textAlign: 'center',
               borderRadius: 5,
-              fontSize:20
+              fontSize: 20,
             },
             btnTextCancel: {
               color: '#191970',
               // backgroundColor: 'black',
-             marginTop:10,
+              marginTop: 10,
               height: 30,
               width: 80,
               textAlign: 'center',
-              borderRadius:10,
-              fontSize:20
+              borderRadius: 10,
+              fontSize: 20,
             },
             datePickerCon: {
               // backgroundColor: '#ff1493',
@@ -92,8 +113,7 @@ return (
               marginRight: 10,
               marginBottom: 10,
               height: 210,
-              
-             },
+            },
             dateText: {
               fontSize: 15,
               color: '#191970',
@@ -103,10 +123,9 @@ return (
               marginTop: 5,
               marginBottom: 5,
             },
-            datePicker:{
-              backgroundColor:'#9acd32'
-            }
-           
+            datePicker: {
+              backgroundColor: '#9acd32',
+            },
           }}
         />
         <TouchableOpacity
@@ -114,7 +133,7 @@ return (
           onPress={() =>
             this.state.isgoAhead ? navigate('time') : this.onDismiss()
           }>
-          <Text style={buttonTextStyle}>GoWether</Text>
+          <Text style={buttonTextStyle}>SUBMIT</Text>
         </TouchableOpacity>
       </View>
     );
@@ -137,14 +156,15 @@ const Container = StyleSheet.create({
     flex: 1,
   },
   buttonStyle: {
-    width: 138,
-    height: 35,
-    backgroundColor: '#00bfff',
+    width: 170,
+    height: 45,
+    backgroundColor: '#ff4500',
     marginTop: 20,
     borderRadius: 5,
   },
   buttonTextStyle: {
     alignSelf: 'center',
+    paddingTop:10,
     paddingTop: 5,
     fontSize: 18,
   },
